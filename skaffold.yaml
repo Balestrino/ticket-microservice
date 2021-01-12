@@ -14,5 +14,11 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
+portForward:
+  - resourceType: service
+    resourceName: auth-srv
+    port: 3000
+    address: 0.0.0.0
+    localPort: 100
