@@ -21,4 +21,4 @@ portForward:
     resourceName: auth-srv
     port: 3000
     address: 0.0.0.0
-    localPort: 100
+    localPort: 80
