@@ -11,3 +11,8 @@ skaffold dev --port-forward
 - Check Ingress
 
   kubectl describe ingress ingress-service
+
+
+Docker images
+
+docker build -t balestrino/client .

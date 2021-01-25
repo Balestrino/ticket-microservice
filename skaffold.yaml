@@ -16,9 +16,22 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: balestrino/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
 portForward:
   - resourceType: service
     resourceName: auth-srv
+    port: 3000
+    address: 0.0.0.0
+    localPort: 80
+  - resourceType: service
+    resourceName: client-srv
     port: 3000
     address: 0.0.0.0
     localPort: 80
