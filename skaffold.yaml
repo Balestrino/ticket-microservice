@@ -24,14 +24,14 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
-portForward:
-  - resourceType: service
-    resourceName: auth-srv
-    port: 3000
-    address: 0.0.0.0
-    localPort: 80
-  - resourceType: service
-    resourceName: client-srv
-    port: 3000
-    address: 0.0.0.0
-    localPort: 80
+# portForward:
+#   - resourceType: service
+#     resourceName: auth-srv
+#     port: 3000
+#     address: 192.168.1.3
+#     localPort: 80
+#   - resourceType: service
+#     resourceName: client-srv
+#     port: 3000
+#     address: 192.168.1.3
+#     localPort: 80

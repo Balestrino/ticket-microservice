@@ -1,18 +1,39 @@
-10.9
+11.13
 
-minikube start
+### Installation
 
-skaffold dev --port-forward
+#### Start minikube
 
-- Verify that NGINX Ingress controller is running
+`minikube start --driver=docker`
 
-  kubectl get pods -n kube-system
+#### Enable ingress
 
-- Check Ingress
+`minikube addons enable ingress`
 
-  kubectl describe ingress ingress-service
+`skaffold dev --port-forward`
 
+`kubectl get services`
+`kubectl get po`
+
+> create a secret
+
+`kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf`
+
+> Verify that NGINX Ingress controller is running
+
+`kubectl get pods -n kube-system`
+
+> Check Ingress
+
+`kubectl describe ingress ingress-service`
 
 Docker images
 
-docker build -t balestrino/client .
+`docker build -t balestrino/client .`
+
+- [ ] id code presentable?
+- [ ] test completion
+
+sudo nohup socat TCP-LISTEN:80,fork TCP:192.168.49.2:80
+
+$$E=mc^2$$
