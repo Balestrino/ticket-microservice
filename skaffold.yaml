@@ -24,6 +24,14 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
+    - image: balestrino/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
 # portForward:
 #   - resourceType: service
 #     resourceName: auth-srv

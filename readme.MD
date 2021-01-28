@@ -1,4 +1,4 @@
-next to view: 11.27
+next to view: 13.6
 
 ### Installation
 
@@ -26,6 +26,10 @@ next to view: 11.27
 > Check Ingress
 
 `kubectl describe ingress ingress-service`
+
+> open a shell in a pod to check stuff (version, etc)
+
+`kubectl exec -it <name of the pod> sh`
 
 Docker images
 
