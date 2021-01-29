@@ -1,4 +1,4 @@
-next to view: 14.9
+next to view: 16.8
 
 ### Installation
 
@@ -40,3 +40,13 @@ Docker images
 
 sudo nohup socat TCP-LISTEN:80,fork TCP:192.168.49.2:80
 
+COMMON MODULE
+
+- npm run pub
+- in tickets dir: npm update @gadue/common
+
+NATS
+
+`kubectl port-forward <nats-depl-pod> 4222:4222`
+Restart the pod (clear old trash data):
+`kubectl delete pod <nats-depl-pod>`
