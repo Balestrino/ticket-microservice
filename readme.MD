@@ -23,9 +23,19 @@ next to view: 16.8
 
 `kubectl get pods -n kube-system`
 
-> Check Ingress
+> Check a service
 
+`kubectl describe service <servicename>`
 `kubectl describe ingress ingress-service`
+
+> Restart a deployment
+
+`kubectl get deployment`
+`kubectl rollout restart deployment <depl_name>`
+
+> Check logs of a pod
+
+`kubectl logs -f <podname>`
 
 > open a shell in a pod to check stuff (version, etc)
 
