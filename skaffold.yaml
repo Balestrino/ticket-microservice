@@ -32,6 +32,14 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: balestrino/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
 # portForward:
 #   - resourceType: service
 #     resourceName: auth-srv
