@@ -1,4 +1,4 @@
-next to view: 21.?
+next to view: 22.1
 
 ### Installation
 
@@ -60,3 +60,14 @@ NATS
 `kubectl port-forward <nats-depl-pod> 4222:4222`
 Restart the pod (clear old trash data):
 `kubectl delete pod <nats-depl-pod>`
+
+
+STRIPE
+
+create a secret
+
+`kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=asdasdasd`
+`kubectl get secrets`
+
+
+
