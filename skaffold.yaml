@@ -48,6 +48,14 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: balestrino/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
 # portForward:
 #   - resourceType: service
 #     resourceName: auth-srv
