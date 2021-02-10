@@ -22,6 +22,11 @@ class NatsWrapper {
       this.client.on('error', (err) => {
         reject(err);
       });
+      // duplicate? test this:
+      this.client.on('close', () => {
+        console.log('Hey closing Nats..')
+        process.exit()
+      });
     });
   }
 }

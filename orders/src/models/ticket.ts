@@ -61,6 +61,12 @@ ticketSchema.statics.build = (attrs: TicketAttrs) => {
 };
 ticketSchema.methods.isReserved = async function () {
   console.log('this', this)
+  // this {
+  //   _id: 601dbbfab7c4ba00198c81a8,
+  //   title: 'qweqeqwe',
+  //   price: 123,
+  //   version: 0
+  // }
 
   // this === the ticket document that we just called 'isReserved' on
 

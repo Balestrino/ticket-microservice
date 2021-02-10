@@ -10,9 +10,7 @@ import { Order } from '../../models/order';
 import { OrderCancelledPublisher } from '../publishers/order-cancelled-publisher';
 import { Ticket } from '../../models/ticket';
 
-export class ExpirationCompleteListener extends Listener<
-  ExpirationCompleteEvent
-> {
+export class ExpirationCompleteListener extends Listener<ExpirationCompleteEvent> {
   queueGroupName = queueGroupName;
   subject: Subjects.ExpirationComplete = Subjects.ExpirationComplete;
 

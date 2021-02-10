@@ -2,15 +2,23 @@ next to view: 22.1
 
 ### Installation
 
-#### Start minikube
-
 `minikube start --driver=docker`
-
-#### Enable ingress
 
 `minikube addons enable ingress`
 
-`skaffold dev --port-forward`
+`kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf`
+
+`kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=sk_test_xxxxxxxxxxxxxx`
+
+`sudo nohup socat TCP-LISTEN:80,fork TCP:192.168.49.2:80`
+
+`skaffold dev`
+
+`kubectl port-forward service/nats-srv 4222:4222`
+`kubectl port-forward nats-depl-xxxxxxxxx 4222:4222`
+`kubectl port-forward nats-depl-xxxxxxxxx 8222:8222`
+
+#### Notes
 
 `kubectl get services`
 `kubectl get po`
@@ -27,6 +35,7 @@ next to view: 22.1
 
 `kubectl describe service <servicename>`
 `kubectl describe ingress ingress-service`
+`kubectl get svc --all-namespaces`
 
 > Restart a deployment
 
@@ -41,16 +50,14 @@ next to view: 22.1
 
 `kubectl exec -it <name of the pod> sh`
 
-Docker images
+> Docker images
 
 `docker build -t balestrino/client .`
 
 - [ ] id code presentable?
 - [ ] test completion
 
-sudo nohup socat TCP-LISTEN:80,fork TCP:192.168.49.2:80
-
-COMMON MODULE
+> COMMON MODULE
 
 - npm run pub
 - in tickets dir: npm update @gadue/common
@@ -58,16 +65,17 @@ COMMON MODULE
 NATS
 
 `kubectl port-forward <nats-depl-pod> 4222:4222`
+
 Restart the pod (clear old trash data):
 `kubectl delete pod <nats-depl-pod>`
-
 
 STRIPE
 
 create a secret
 
-`kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=asdasdasd`
+`kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=sk_test_xxxxxxxxxxxxxx`
 `kubectl get secrets`
 
+> Get inside a pod in a namespace (ex. ingress)
 
-
+`kubectl exec -it -n <namespace> <pod> `nginx -s reload`

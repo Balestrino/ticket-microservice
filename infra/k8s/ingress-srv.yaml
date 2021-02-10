@@ -1,44 +1,55 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  annotations:
+    # Enable client certificate authentication
+    # nginx.ingress.kubernetes.io/auth-tls-verify-client: "off"
+    # nginx.ingress.kubernetes.io/rewrite-target: /$1
   name: ingress-service
 spec:
   rules:
-  - host: server.test
-    http:
-      paths:
-        - pathType: Prefix
-          path: "/api/payments"
-          backend:
-            service:
-              name: payments-srv
-              port: 
-                number: 3000
-        - pathType: Prefix
-          path: "/api/users"
-          backend:
-            service:
-              name: auth-srv
-              port: 
-                number: 3000
-        - pathType: Prefix
-          path: "/api/tickets"
-          backend:
-            service:
-              name: tickets-srv
-              port: 
-                number: 3000
-        - pathType: Prefix
-          path: "/api/orders"
-          backend:
-            service:
-              name: orders-srv
-              port: 
-                number: 3000
-        - pathType: Prefix
-          path: "/"
-          backend:
-            service:
-              name: client-srv
-              port: 
-                number: 3000
+    - host: server.test
+      http:
+        paths:
+          - pathType: Prefix
+            path: /nats
+            backend:
+              service:
+                name: nats-srv
+                port:
+                  number: 8222
+          - pathType: Prefix
+            path: /api/payments
+            backend:
+              service:
+                name: payments-srv
+                port:
+                  number: 3000
+          - pathType: Prefix
+            path: /api/users
+            backend:
+              service:
+                name: auth-srv
+                port:
+                  number: 3000
+          - pathType: Prefix
+            path: /api/tickets
+            backend:
+              service:
+                name: tickets-srv
+                port:
+                  number: 3000
+          - pathType: Prefix
+            path: /api/orders
+            backend:
+              service:
+                name: orders-srv
+                port:
+                  number: 3000
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: client-srv
+                port:
+                  number: 3000

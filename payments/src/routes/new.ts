@@ -26,6 +26,8 @@ router.post(
 
     const order = await Order.findById(orderId);
 
+    console.log('order ', order)
+
     if (!order) {
       throw new NotFoundError();
     }
