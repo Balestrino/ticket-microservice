@@ -1,4 +1,4 @@
-next to view: 22.1
+### Structure
 
 ### Installation
 
@@ -53,9 +53,6 @@ next to view: 22.1
 > Docker images
 
 `docker build -t balestrino/client .`
-
-- [ ] id code presentable?
-- [ ] test completion
 
 > COMMON MODULE
 
