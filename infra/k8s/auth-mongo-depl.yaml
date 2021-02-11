@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: auth-mongo-depl
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: auth-mongo
@@ -15,6 +14,15 @@ spec:
       containers:
         - name: auth-mongo
           image: mongo
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: storage
+              mountPath: /persistentdata
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: auth-pv-claim
 ---
 apiVersion: v1
 kind: Service
@@ -28,3 +36,30 @@ spec:
       protocol: TCP
       port: 27017
       targetPort: 27017
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: auth-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/persistentdata"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: auth-pv-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
