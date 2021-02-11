@@ -79,3 +79,8 @@ create a secret
 > Get inside a pod in a namespace (ex. ingress)
 
 `kubectl exec -it -n <namespace> <pod> `nginx -s reload`
+
+> Access mongoDB with Compass
+
+`kubectl port-forward service/auth-mongo-srv 27017:27017`
+`sudo socat TCP4-LISTEN:27018, fork TCP:127.0.0.1:27017`
