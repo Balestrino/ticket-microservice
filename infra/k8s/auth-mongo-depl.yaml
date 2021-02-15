@@ -18,11 +18,11 @@ spec:
             - containerPort: 27017
           volumeMounts:
             - name: storage
-              mountPath: /persistentdata
+              mountPath: /data/db
       volumes:
         - name: storage
           persistentVolumeClaim:
-            claimName: auth-pv-claim
+            claimName: nfs-claim
 ---
 apiVersion: v1
 kind: Service
@@ -40,26 +40,32 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: auth-pv-volume
-  labels:
-    type: local
+  name: nfs
 spec:
-  storageClassName: manual
   capacity:
     storage: 1Gi
   accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/persistentdata"
+    - ReadWriteMany
+  claimRef:
+    namespace: default
+    name: nfs-claim
+  persistentVolumeReclaimPolicy: Retain
+  #storageClassName: slow
+  mountOptions:
+    #- hard
+    - nfsvers=4.1
+  nfs:
+    server: "192.168.1.3"
+    path: "/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: auth-pv-claim
+  name: nfs-claim
 spec:
-  storageClassName: manual
+  # storageClassName: ""
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
