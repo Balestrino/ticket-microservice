@@ -90,4 +90,6 @@ create a secret
 
 `/etc/exports
 
-/data \*(rw,sync,no_subtree_check,no_root_squash)`
+/data/auth-mongo \*(rw,sync,no_subtree_check,no_root_squash)`
+
+sudo systemctl restart nfs-kernel-server
