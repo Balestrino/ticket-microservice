@@ -8,7 +8,7 @@
 
 `kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf`
 
-`kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=sk_test_xxxxxxxxxxxxxx`
+`kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=sk_test_5NCm7qyJtkdvu0PuMy4ZSn5o00M5WuISwp`
 
 `sudo nohup socat TCP-LISTEN:80,fork TCP:192.168.49.2:80`
 
@@ -81,3 +81,13 @@ create a secret
 
 `kubectl port-forward service/auth-mongo-srv 27017:27017`
 `sudo socat TCP4-LISTEN:27018, fork TCP:127.0.0.1:27017`
+
+`minikube ssh`
+
+> Persistent MongoDB with NFS
+
+`kubectl patch storageclass standard -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'`
+
+`/etc/exports
+
+/data \*(rw,sync,no_subtree_check,no_root_squash)`
